@@ -1,0 +1,35 @@
+{% extends 'blank_layout.html' %}
+{% load static %}
+{% block banner %}
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/image55.jpg' %}" width="100%">
+            </div>
+            <div class="col-2">
+                {% if messages %}
+                <div class="message-container">
+                    {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span>OTP Verification</span>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" required name="otp" placeholder="Type your verification code">
+                        <button type="submit" name="verOTP" class="btn">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock banner %}
